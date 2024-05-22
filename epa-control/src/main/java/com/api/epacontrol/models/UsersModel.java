@@ -1,21 +1,13 @@
 package com.api.epacontrol.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
-import org.springframework.data.annotation.Id;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "TAB_USERS")
-public class Users implements Serializable {
+public class UsersModel implements Serializable {
 
   // Observação para Thiago é necessário fazer os métodos
   //   complementares que você não tem ainda como os métodos de localização para que eles criem uma
@@ -24,8 +16,8 @@ public class Users implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private UUID id;
 
   @Column(name = "NOME", nullable = false, length = 100)
   private String nome;
@@ -36,15 +28,18 @@ public class Users implements Serializable {
   @Column(name = "SENHA", nullable = false)
   private String senha;
 
+  @Column(nullable = false)
+  private LocalDateTime registrationDate;
+
   public static long getSerialversionuid() {
     return serialVersionUID;
   }
 
-  public Long getId() {
+  public UUID getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 
@@ -70,5 +65,13 @@ public class Users implements Serializable {
 
   public void setSenha(String senha) {
     this.senha = senha;
+  }
+
+  public LocalDateTime getRegistrationDate() {
+    return registrationDate;
+  }
+
+  public void setRegistrationDate(LocalDateTime registrationDate) {
+    this.registrationDate = registrationDate;
   }
 }
