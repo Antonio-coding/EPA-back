@@ -18,4 +18,12 @@ public class UsersService {
   public UsersModel save(UsersModel usersModel) {
     return usersRepository.save(usersModel);
   }
+
+  public boolean existsByEmail(String email) {
+    return usersRepository.existsByEmail(email);
+  }
+
+  public boolean existsIpAddress(String ipAddress) {
+    return usersRepository.existsByIpAddress(ipAddress);
+  }
 }

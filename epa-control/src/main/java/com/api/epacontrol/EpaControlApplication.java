@@ -13,6 +13,6 @@ public class EpaControlApplication {
 
   @GetMapping("/")
   public String index() {
-    return "Ola Moundo thiago";
+    return "Ola Mundo thiago";
   }
 }

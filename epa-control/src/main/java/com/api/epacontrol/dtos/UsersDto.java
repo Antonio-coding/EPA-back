@@ -31,6 +31,8 @@ public class UsersDto {
   )
   private String senha;
 
+  private String ipAddress;
+
   public String getNome() {
     return nome;
   }
@@ -53,5 +55,9 @@ public class UsersDto {
 
   public void setSenha(String senha) {
     this.senha = senha;
+  }
+
+  public String getIpAddress() {
+    return ipAddress;
   }
 }
