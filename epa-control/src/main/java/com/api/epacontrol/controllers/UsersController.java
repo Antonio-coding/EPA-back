@@ -6,14 +6,16 @@ import com.api.epacontrol.services.UsersService;
 import jakarta.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.regex.Pattern;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -31,23 +33,11 @@ public class UsersController {
   public ResponseEntity<Object> saveUsers(
     @RequestBody @Valid UsersDto usersDto
   ) {
-    // Check for duplicate email using database constraint
     if (usersService.existsByEmail(usersDto.getEmail())) {
       return ResponseEntity
         .status(HttpStatus.CONFLICT)
         .body("Email already exists");
     }
-
-    // Validate IP address
-    String ipAddress = usersDto.getIpAddress();
-    if (!isValidIpAddress(ipAddress)) {
-      return ResponseEntity
-        .status(HttpStatus.BAD_REQUEST)
-        .body("Invalid IP address");
-    }
-
-    // Enforce password strength
-    // ... (Assume you have password encoding logic here)
 
     var usersModel = new UsersModel();
     BeanUtils.copyProperties(usersDto, usersModel);
@@ -58,10 +48,15 @@ public class UsersController {
       .body(usersService.save(usersModel));
   }
 
-  private boolean isValidIpAddress(String ipAddress) {
-    String regex =
-      "^(?:25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$";
-    Pattern pattern = Pattern.compile(regex);
-    return pattern.matcher(ipAddress).matches();
+  @GetMapping("/{id}")
+  public ResponseEntity<Object> getUserById(@PathVariable Long id) {
+    UsersModel userModel = usersService.findById(id);
+    if (userModel == null) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    }
+
+    UsersDto usersDto = new UsersDto();
+    BeanUtils.copyProperties(userModel, usersDto);
+    return ResponseEntity.ok(usersDto);
   }
 }

@@ -23,7 +23,7 @@ public class UsersService {
     return usersRepository.existsByEmail(email);
   }
 
-  public boolean existsIpAddress(String ipAddress) {
-    return usersRepository.existsByIpAddress(ipAddress);
+  public UsersModel findById(Long id) {
+    return usersRepository.findById(id).orElse(null); // Optional handling
   }
 }
