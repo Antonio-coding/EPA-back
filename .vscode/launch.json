@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-EpaControlApplication<epa-control>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.api.epacontrol.EpaControlApplication",
+      "projectName": "epa-control",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
