@@ -1,10 +1,14 @@
-package com.api.epacontrol.repositories;
+package com.api.epacontrol.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.api.epacontrol.models.CriarTurma;
+import com.api.epacontrol.models.LocalizacaoTurma;
+import com.api.epacontrol.repositories.CriarTurmaRepository;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,7 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/turmas")
+@RequestMapping("/turma")
 public class CriarTurmaController {
 
     @Autowired
@@ -40,7 +44,7 @@ public class CriarTurmaController {
                                                    @RequestParam("endereco") String endereco,
                                                    @RequestParam("cidade") String cidade,
                                                    @RequestParam("estado") String estado) throws IOException {
-        CriarTurma turma = new CriarTurma();
+        CriarTurma turma = new CriarTurma(null, estado, null, estado, estado, null, null, null);
         turma.setNomeTurma(nomeTurma);
         turma.setFoto(foto.getBytes());
         turma.setNomeDisciplina(nomeDisciplina);
@@ -48,11 +52,8 @@ public class CriarTurmaController {
         turma.setHora(LocalDateTime.parse(hora));
         turma.setData(LocalDateTime.parse(data));
         
-        LocalizacaoTurma localizacao = new Localizacao();
-        localizacao.setEndereco(endereco);
-        localizacao.setCidade(cidade);
-        localizacao.setEstado(estado);
-        turma.setLocalizacao(localizacao);
+        LocalizacaoTurma localizacaoTurma = new LocalizacaoTurma(endereco, cidade);
+        turma.setLocalizacao(localizacaoTurma);
 
         CriarTurma savedTurma = criarTurmaRepository.save(turma);
         return new ResponseEntity<>(savedTurma, HttpStatus.CREATED);
@@ -69,7 +70,7 @@ public class CriarTurmaController {
                                                    @RequestParam("endereco") String endereco,
                                                    @RequestParam("cidade") String cidade,
                                                    @RequestParam("estado") String estado) throws IOException {
-        Optional<CriarTurma> turmaOptional = criarTurmasRepository.findById(id);
+        Optional<CriarTurma> turmaOptional = criarTurmaRepository.findById(id);
         if (turmaOptional.isPresent()) {
             CriarTurma turma = turmaOptional.get();
             turma.setNomeTurma(nomeTurma);
@@ -79,11 +80,8 @@ public class CriarTurmaController {
             turma.setHora(LocalDateTime.parse(hora));
             turma.setData(LocalDateTime.parse(data));
             
-            LocalizacaoTurma localizacao = new Localizacao();
-            localizacao.setEndereco(endereco);
-            localizacao.setCidade(cidade);
-            localizacao.setEstado(estado);
-            turma.setLocalizacao(localizacao);
+            LocalizacaoTurma localizacaoTurma = new LocalizacaoTurma(endereco, cidade);
+            turma.setLocalizacao(localizacaoTurma);
 
             CriarTurma updatedTurma = criarTurmaRepository.save(turma);
             return ResponseEntity.ok(updatedTurma);
