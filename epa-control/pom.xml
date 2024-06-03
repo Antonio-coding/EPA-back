@@ -54,6 +54,7 @@
 			<artifactId>jakarta.persistence-api</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		<!-- fim das dependencias para o CriarTurma -->
 	</dependencies>
 
 	<build>
