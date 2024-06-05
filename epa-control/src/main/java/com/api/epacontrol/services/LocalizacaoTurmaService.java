@@ -1,24 +1,21 @@
 package com.api.epacontrol.services;
 
+import com.api.epacontrol.models.LocalizacaoTurmaModel;
+import com.api.epacontrol.repositories.LocalizacaoTurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.api.epacontrol.models.LocalizacaoTurma;
-import com.api.epacontrol.repositories.LocalizacaoTurmaRepository;
 
 @Service
 public class LocalizacaoTurmaService {
 
-    @Autowired
-    LocalizacaoTurmaRepository localizacaoTurmaRepository;
+  @Autowired
+  LocalizacaoTurmaRepository localizacaoTurmaRepository;
 
-    public LocalizacaoTurma save(LocalizacaoTurma localizacaoTurma) {
-        return localizacaoTurmaRepository.save(localizacaoTurma);
-    }
+  public LocalizacaoTurmaModel save(LocalizacaoTurmaModel localizacaoTurma) {
+    return localizacaoTurmaRepository.save(localizacaoTurma);
+  }
 
-    public boolean existsById(Long id) {
-        return localizacaoTurmaRepository.existsById(id);
-    }
-
-
+  public boolean existsById(Long id) {
+    return localizacaoTurmaRepository.existsById(id);
+  }
 }
