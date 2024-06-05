@@ -9,10 +9,6 @@ import java.util.UUID;
 @Table(name = "TAB_USERS")
 public class UsersModel implements Serializable {
 
-  // Observação para Thiago é necessário fazer os métodos
-  //   complementares que você não tem ainda como os métodos de localização para que eles criem uma
-  // tabela específica OA tabela específica própria para agenda da
-
   private static final long serialVersionUID = 1L;
 
   @Id

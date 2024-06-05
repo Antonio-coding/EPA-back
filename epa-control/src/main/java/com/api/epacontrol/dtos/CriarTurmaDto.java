@@ -1,49 +1,36 @@
-package com.api.epacontrol.models;
+package com.api.epacontrol.dtos;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@Entity
-@Table(TB_CLASS_CREATED)
-public class CriarTurma {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+public class CriarTurmaDto {
 
+    @NotBlank(message = "O nome da turma não pode ser vazio.")
+    @Size(min = 3, max = 100, message = "O nome da turma deve ter entre 3 e 100 caracteres.")
     private String nomeTurma;
 
-    @Lob
     private byte[] foto;
 
+    @NotBlank(message = "O nome da disciplina não pode ser vazio.")
+    @Size(min = 3, max = 100, message = "O nome da disciplina deve ter entre 3 e 100 caracteres.")
     private String nomeDisciplina;
+
+    @NotBlank(message = "O nível da turma não pode ser vazio.")
+    @Size(min = 1, max = 50, message = "O nível da turma deve ter entre 1 e 50 caracteres.")
     private String nivel;
+
+    @NotNull(message = "A hora não pode ser nula.")
     private LocalDateTime hora;
+
+    @NotNull(message = "A data não pode ser nula.")
     private LocalDateTime data;
 
-    @Embedded
-    private LocalizacaoTurma localizacao;
+    @NotNull(message = "A localização não pode ser nula.")
+    private LocalizacaoTurmaDto localizacao;
 
-      // Construtor 
-      public CriarTurma(UUID id, String nomeTurma, byte[] foto, String nomeDisciplina, String nivel, LocalDateTime hora, LocalDateTime data, LocalizacaoTurma localizacao) {
-        this.id = id;
-        this.nomeTurma = nomeTurma;
-        this.foto = foto;
-        this.nomeDisciplina = nomeDisciplina;
-        this.nivel = nivel;
-        this.hora = hora;
-        this.data = data;
-        this.localizacao = localizacao;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    // Getters e Setters
 
     public String getNomeTurma() {
         return nomeTurma;
@@ -93,12 +80,11 @@ public class CriarTurma {
         this.data = data;
     }
 
-    public LocalizacaoTurma getLocalizacao() {
+    public LocalizacaoTurmaDto getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(LocalizacaoTurma localizacao) {
+    public void setLocalizacao(LocalizacaoTurmaDto localizacao) {
         this.localizacao = localizacao;
     }
-
 }

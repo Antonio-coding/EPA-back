@@ -1,24 +1,23 @@
 package com.api.epacontrol.services;
 
+import com.api.epacontrol.models.LocalizacaoUsuarioModel;
+import com.api.epacontrol.repositories.LocalizacaoUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.api.epacontrol.models.LocalizacaoUsuario;
-import com.api.epacontrol.repositories.LocalizacaoUsuarioRepository;
 
 @Service
 public class LocalizacaoUsuarioService {
 
-    @Autowired
-    LocalizacaoUsuarioRepository localizacaoUsuarioRepository;
+  @Autowired
+  LocalizacaoUsuarioRepository localizacaoUsuarioRepository;
 
-    public LocalizacaoUsuario save(LocalizacaoUsuario localizacaoUsuario) {
-        return localizacaoUsuarioRepository.save(localizacaoUsuario);
-    }
+  public LocalizacaoUsuarioModel save(
+    LocalizacaoUsuarioModel localizacaoUsuario
+  ) {
+    return localizacaoUsuarioRepository.save(localizacaoUsuario);
+  }
 
-    public boolean existsById(Long id) {
-        return localizacaoUsuarioRepository.existsById(id);
-    }
-
-    
+  public boolean existsById(Long id) {
+    return localizacaoUsuarioRepository.existsById(id);
+  }
 }
