@@ -61,7 +61,7 @@ public class UsersModel implements Serializable {
 
   public String getSenha() {
     return senha;
-  }
+  } 
 
   public void setSenha(String senha) {
     this.senha = senha;
