@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,5 +30,17 @@ public class CriarTurmaService {
 
   public void deletarTurma(UUID id) {
     criarTurmaRepository.deleteById(id);
+  }
+
+  public Page<CriarTurmaModel> findAll(Pageable pageable) {
+    return criarTurmaRepository.findAll(pageable);
+  }
+
+  public Optional<CriarTurmaModel> findById(UUID id) {
+    return criarTurmaRepository.findById(id);
+  }
+
+  public void delete(CriarTurmaModel criarTurmaModel) {
+    criarTurmaRepository.delete(criarTurmaModel);
   }
 }
