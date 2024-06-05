@@ -14,8 +14,8 @@ public class CriarTurmaService {
   @Autowired
   private CriarTurmaRepository criarTurmaRepository;
 
-  public CriarTurmaModel criarTurma(CriarTurmaModel turma) {
-    return criarTurmaRepository.save(turma);
+  public CriarTurmaModel save(CriarTurmaModel criarTurma) {
+    return criarTurmaRepository.save(criarTurma);
   }
 
   public List<CriarTurmaModel> listarTurmas() {

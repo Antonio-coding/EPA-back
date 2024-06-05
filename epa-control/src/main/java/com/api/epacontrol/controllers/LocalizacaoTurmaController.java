@@ -22,7 +22,8 @@ public class LocalizacaoTurmaController {
   public ResponseEntity<Object> saveLocalizacaoTurma(
     @RequestBody @Valid LocalizacaoTurmaDto localizacaoTurmaDto
   ) {
-    if (localizacaoTurmaService.existsById(localizacaoTurmaDto.getId())) {
+    // Check if a similar location exists for another class
+    if (localizacaoTurmaService.locationExists(localizacaoTurmaDto)) {
       return ResponseEntity
         .status(HttpStatus.CONFLICT)
         .body("Localização da turma já existe!");

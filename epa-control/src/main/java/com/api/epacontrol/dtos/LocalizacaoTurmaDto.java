@@ -4,57 +4,49 @@ import jakarta.validation.constraints.NotBlank;
 
 public class LocalizacaoTurmaDto {
 
-    private Long id;
+  @NotBlank(message = "O endereço não pode ser vazio.")
+  private String endereco;
 
-    @NotBlank
-    private String estado;
+  @NotBlank(message = "A cidade não pode ser vazia.")
+  private String cidade;
 
-    @NotBlank
-    private String cidade;
+  @NotBlank(message = "O estado não pode ser vazio.")
+  private String estado;
 
-    private String logradouro;
-    private String complemento;
+  @NotBlank(message = "O CEP não pode ser vazio.")
+  private String cep;
 
-    // Getters and Setters
+  // Getters e Setters
 
-    public Long getId() {
-        return id;
-    }
+  public String getEndereco() {
+    return endereco;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setEndereco(String endereco) {
+    this.endereco = endereco;
+  }
 
-    public String getEstado() {
-        return estado;
-    }
+  public String getCidade() {
+    return cidade;
+  }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+  public void setCidade(String cidade) {
+    this.cidade = cidade;
+  }
 
-    public String getCidade() {
-        return cidade;
-    }
+  public String getEstado() {
+    return estado;
+  }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+  public void setEstado(String estado) {
+    this.estado = estado;
+  }
 
-    public String getLogradouro() {
-        return logradouro;
-    }
+  public String getCep() {
+    return cep;
+  }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
+  public void setCep(String cep) {
+    this.cep = cep;
+  }
 }
-
