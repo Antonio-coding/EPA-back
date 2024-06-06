@@ -61,5 +61,5 @@ public class AdministradorController {
         var administrador = administradorOptional.get();
         BeanUtils.copyProperties(administradorDto, administrador);
         return ResponseEntity.status(HttpStatus.OK).body(administradorService.save(administrador));
-    }
+    }
 }

@@ -30,5 +30,5 @@ public class AdministradorService {
         administradorRepository.delete(administrador);
     }
 
-    // Other methods as needed
+    // Other methods as needed
 }

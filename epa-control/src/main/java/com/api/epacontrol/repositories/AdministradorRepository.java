@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.api.epacontrol.models.Administrador;
 
 @Repository
-public interface AdministradorRepository extends JpaRepository<Administrador, String> {
+public interface AdministradorRepository extends JpaRepository<Administrador, String> {
 }

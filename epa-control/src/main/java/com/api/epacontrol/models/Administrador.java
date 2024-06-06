@@ -57,5 +57,5 @@ public class Administrador {
 
     public void setPassword(String password) {
         this.password = password;
-    }
+    }
 }
