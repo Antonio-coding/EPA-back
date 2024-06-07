@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class LocalizacaoTurma {
+public class LocalizacaoTurmaModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +17,9 @@ public class LocalizacaoTurma {
     private String logradouro;
     private String complemento;
 
-    public LocalizacaoTurma() {}
+    public LocalizacaoTurmaModel() {}
 
-    public LocalizacaoTurma(String estado, String cidade) {
+    public LocalizacaoTurmaModel(String estado, String cidade) {
         this.estado = estado;
         this.cidade = cidade;
     }
