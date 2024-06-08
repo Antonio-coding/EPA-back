@@ -1,69 +1,68 @@
 package com.api.epacontrol.models;
 
-import jakarta.persistence.*;
-import java.io.Serializable;
-import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "TB_LOCALIZACAO_TURMA")
-public class LocalizacaoTurmaModel implements Serializable {
+public class LocalizacaoTurmaModel {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  private static final long serialVersionUID = 1L;
+    private String estado;
+    private String cidade;
+    private String logradouro;
+    private String complemento;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
+    public LocalizacaoTurmaModel() {}
 
-  @Column(name = "ENDERECO", nullable = false, length = 255)
-  private String endereco;
+    public LocalizacaoTurmaModel(String estado, String cidade) {
+        this.estado = estado;
+        this.cidade = cidade;
+    }
 
-  @Column(name = "CIDADE", nullable = false, length = 100)
-  private String cidade;
+    // Getters and Setters
 
-  @Column(name = "ESTADO", nullable = false, length = 100)
-  private String estado;
+    public Long getId() {
+        return id;
+    }
 
-  @Column(name = "CEP", nullable = false, length = 20)
-  private String cep;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  // Getters e Setters
-  public UUID getId() {
-    return id;
-  }
+    public String getEstado() {
+        return estado;
+    }
 
-  public void setId(UUID id) {
-    this.id = id;
-  }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
-  public String getEndereco() {
-    return endereco;
-  }
+    public String getCidade() {
+        return cidade;
+    }
 
-  public void setEndereco(String endereco) {
-    this.endereco = endereco;
-  }
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 
-  public String getCidade() {
-    return cidade;
-  }
+    public String getLogradouro() {
+        return logradouro;
+    }
 
-  public void setCidade(String cidade) {
-    this.cidade = cidade;
-  }
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
 
-  public String getEstado() {
-    return estado;
-  }
+    public String getComplemento() {
+        return complemento;
+    }
 
-  public void setEstado(String estado) {
-    this.estado = estado;
-  }
-
-  public String getCep() {
-    return cep;
-  }
-
-  public void setCep(String cep) {
-    this.cep = cep;
-  }
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
 }
