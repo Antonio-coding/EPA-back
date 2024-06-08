@@ -71,6 +71,6 @@ jobs:
           azure-subscription: ${{ env.AZURE_SUBSCRIPTION }}
           action: Deploy
           service-name: spring-back-end
-          app-name: backend-epa
+          app-name: backend-controller-epa
           use-staging-deployment: false
           package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar
