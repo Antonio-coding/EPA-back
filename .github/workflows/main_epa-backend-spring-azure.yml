@@ -19,14 +19,16 @@ jobs:
           java-version: "17"
 
       - name: Build with Maven
-        run: mvn clean install -DskipTests \
-            -DSPRING_DATASOURCE_URL=${{ secrets.SPRING_DATASOURCE_URL }} \
-            -DSPRING_DATASOURCE_USERNAME=${{ secrets.SPRING_DATASOURCE_USERNAME }} \
-            -DSPRING_DATASOURCE_PASSWORD=${{ secrets.SPRING_DATASOURCE_PASSWORD }} \
-            -DSPRING_DATASOURCE_DRIVER-CLASS-NAME=${{ secrets.SPRING_DATASOURCE_DRIVER-CLASS-NAME }} \
-            -DSPRING_JPA_HIBERNATE_DDL-AUTO=${{ secrets.SPRING_JPA_HIBERNATE_DDL-AUTO }} \
-            -DSPRING_JPA_DATABASE-PLATFORM=${{ secrets.SPRING_JPA_DATABASE-PLATFORM }}
-        working-directory: ./epa-control # Adicione isso para garantir que o Maven seja executado no diretório correto
+        run: |
+          mvn clean install -DskipTests
+        env:
+          SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+          SPRING_DATASOURCE_DRIVER_CLASS_NAME: ${{ secrets.SPRING_DATASOURCE_DRIVER_CLASS_NAME }}
+          SPRING_JPA_HIBERNATE_DDL_AUTO: ${{ secrets.SPRING_JPA_HIBERNATE_DDL_AUTO }}
+          SPRING_JPA_DATABASE_PLATFORM: ${{ secrets.SPRING_JPA_DATABASE_PLATFORM }}
+        working-directory: ./epa-control
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -52,9 +54,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C9898925079649D9B1152CA0E256112E }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_58F2AF816E4E4F9DBC937C9DF56A9A2C }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_06F89A353E1947FF8047A39D2F10D568 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
