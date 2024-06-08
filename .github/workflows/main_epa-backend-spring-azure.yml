@@ -73,4 +73,4 @@ jobs:
           service-name: spring-back-end
           app-name: backend-epa
           use-staging-deployment: false
-          package: ${{ env.ASC_PACKAGE_PATH }}./epa-control/**/*.jar
+          package: ${{ env.ASC_PACKAGE_PATH }}/**/*.jar
